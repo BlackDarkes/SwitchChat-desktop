@@ -1,0 +1,41 @@
+export const ENDPOINTS = {
+	auth: {
+		login: "/auth/login",
+		register: "/auth/register",
+		logout: "/auth/logout",
+		refresh: "/auth/refresh",
+	},
+	user: {
+		me: "/user/me",
+		search: "/user/search",
+		update: "/user",
+	},
+	contact: {
+		getContacts: "/contacts",
+		search: "/contacts/search",
+		addContact: "/contacts",
+		removeContact: "/contacts",
+	},
+	chat: {
+		getUserChat: "/chats",
+		getChatById: "/chats/:id",
+		getSelfChat: "/chats/self",
+		getDirectChats: "/chats/direct",
+		getGroupChats: "/chats/group",
+		getFavoriteChats: "/chats/favorite",
+		search: "/chats/search",
+		create: "/chats",
+		update: "/chats/:id",
+		join: "/chats/:id/join",
+		leave: "/chats/:id/leave",
+		addFavorite: "/chats/:id/add-favorite",
+		removeFavorite: "/chats/:id/remove-favorite",
+	},
+	message: {
+		getHistory: "/messages/:id",
+		send: "/messages/:id",
+		update: "/messages/:id",
+		delete: "/messages/:id",
+		react: "/messages/:id/emoji/:emoji",
+	},
+};

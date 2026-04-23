@@ -1,6 +1,7 @@
 import { resolve } from "path";
 import { defineConfig } from "electron-vite";
 import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
 	main: {},
@@ -8,9 +9,14 @@ export default defineConfig({
 	renderer: {
 		resolve: {
 			alias: {
-				"@renderer": resolve("src/renderer/src"),
+				"@/app/*": resolve("src/renderer/src/app/*"),
+				"@/pages/*": resolve("src/renderer/src/pages/*"),
+				"@/widgets/*": resolve("src/renderer/src/widgets/*"),
+				"@/features/*": resolve("src/renderer/src/features/*"),
+				"@/shared/*": resolve("src/renderer/src/shared/*"),
+				"@/libs/*": resolve("src/renderer/src/libs/*"),
 			},
 		},
-		plugins: [react()],
+		plugins: [react(), tailwindcss()],
 	},
 });
