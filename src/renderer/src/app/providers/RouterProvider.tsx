@@ -1,5 +1,5 @@
 import { HomePage } from "@/pages/home-page/HomePage";
-import { AboutPage } from "@/pages/index";
+import { AboutPage, LoginPage, RegisterPage } from "@/pages/index";
 import { createBrowserRouter } from "react-router";
 
 export const router = createBrowserRouter([
@@ -10,5 +10,13 @@ export const router = createBrowserRouter([
 	{
 		path: "/about",
 		element: <AboutPage />,
+	},
+	{
+		path: "/login",
+		element: <LoginPage />,
+	},
+	{
+		path: "/register",
+		element: <RegisterPage />,
 	},
 ]);

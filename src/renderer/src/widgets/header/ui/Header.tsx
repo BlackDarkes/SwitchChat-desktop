@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Link } from "react-router";
 
 export const Header = (): ReactNode => {
 	return (
@@ -10,8 +11,12 @@ export const Header = (): ReactNode => {
 					<li>home</li>
 					<li>about</li>
 					<li>contact</li>
-					<li>login</li>
-					<li>register</li>
+					<li>
+						<Link to={"/login"}>login</Link>
+					</li>
+					<li>
+						<Link to={"/register"}>register</Link>
+					</li>
 				</nav>
 			</div>
 		</header>
