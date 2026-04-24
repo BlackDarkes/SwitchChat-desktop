@@ -4,10 +4,13 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { chatApi } from "./chatApi";
 import { IChat } from "@/shared/types";
 
-export const useChats = (): UseQueryResult<{ chats: IChat[] }> => {
+export const useChats = (): UseQueryResult<IChat[]> => {
 	return useQuery({
 		queryKey: ["chats"],
-		queryFn: () => chatApi.getUserChats() as Promise<{ chats: IChat[] }>,
+		queryFn: async () => {
+			const response = await chatApi.getUserChats();
+			return response.chats;
+		},
 		placeholderData: (prevData) => prevData, // placeholder что бы не моргало
 	});
 };

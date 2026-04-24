@@ -1,7 +1,7 @@
+import { ChatListPage } from "@/pages/index";
 import { cn } from "@/shared/lib/utils";
+import { Header } from "@/widgets/header";
 import { JSX } from "react";
-import { Outlet } from "react-router";
-
 export const MainLayout = (): JSX.Element => {
 	return (
 		<main
@@ -18,9 +18,10 @@ export const MainLayout = (): JSX.Element => {
 					"max-md:w-full",
 				)}
 			>
-				<Outlet />
+				<Header />
+
 				<div className={cn("flex h-full", "max-md:flex-col")}>
-					<Outlet />
+					<ChatListPage />
 
 					<div
 						className={cn(
@@ -29,7 +30,6 @@ export const MainLayout = (): JSX.Element => {
 							"max-md:h-[calc(100%-170px)]",
 						)}
 					>
-						<Outlet />
 						{/* <ChatIsland /> */}
 					</div>
 				</div>
@@ -45,7 +45,7 @@ export const MainLayout = (): JSX.Element => {
 					// },
 				)}
 			>
-				<Outlet />
+        
 			</aside>
 		</main>
 	);
