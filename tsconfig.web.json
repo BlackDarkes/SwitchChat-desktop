@@ -10,19 +10,22 @@
     "composite": true,
     "jsx": "react-jsx",
     "paths": {
-      "@app/*": [
+      "@/app/*": [
         "./src/renderer/src/app/*",
       ],
-      "@pages/*": [
+      "@/pages/*": [
         "./src/renderer/src/pages/*",
       ],
-      "@widgets/*": [
+      "@/widgets/*": [
         "./src/renderer/src/widgets/*",
       ],
       "@features/*": [
         "./src/renderer/src/features/*",
       ],
-      "@shared/*": [
+      "@/entities/*": [
+        "./src/renderer/src/entities/*",
+      ],
+      "@/shared/*": [
         "./src/renderer/src/shared/*",
       ],
       "@libs/*": [

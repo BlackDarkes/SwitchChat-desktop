@@ -1,5 +1,5 @@
-import { Button } from "@shared/ui";
-import { Header } from "@widgets/header/ui/Header";
+import { Button } from "@/shared/ui";
+import { Header } from "@/widgets/header/ui/Header";
 import { JSX } from "react";
 import { Link } from "react-router";
 import { toast } from "sonner";
