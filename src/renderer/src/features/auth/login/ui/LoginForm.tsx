@@ -9,6 +9,7 @@ import { InputField, LinkUnderline } from "@/shared/ui";
 import { ButtonAuth } from "../../ui";
 import { toast } from "sonner";
 import { JSX } from "react";
+import { useNavigate } from "react-router";
 
 export const LoginForm = (): JSX.Element => {
 	const {
@@ -26,6 +27,7 @@ export const LoginForm = (): JSX.Element => {
 		},
 	});
 	const { login, isLoading } = useLoginStore();
+	const navigate = useNavigate();
 
 	const onSubmit: SubmitHandler<TypeLoginSchema> = async (
 		data: TypeLoginSchema,
@@ -37,6 +39,8 @@ export const LoginForm = (): JSX.Element => {
 
 			setValue("email", "");
 			setValue("password", "");
+
+			navigate("/");
 		} catch {
 			toast.error("Неверные логин или пароль");
 

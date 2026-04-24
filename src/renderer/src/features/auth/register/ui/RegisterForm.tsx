@@ -9,6 +9,7 @@ import { useLoginStore } from "../../model/login-store";
 import { ButtonAuth } from "../../ui";
 import { toast } from "sonner";
 import { JSX } from "react";
+import { useNavigate } from "react-router";
 
 export const RegisterForm = (): JSX.Element => {
 	const {
@@ -21,12 +22,15 @@ export const RegisterForm = (): JSX.Element => {
 		resolver: zodResolver(registerSchema),
 	});
 	const { register: registerUser, isLoading } = useLoginStore();
+	const navigate = useNavigate();
 
 	const onSubmit = async (data: TypeRegisterSchema): Promise<void> => {
 		try {
 			const resultMessage = await registerUser(data);
 
 			toast.success(resultMessage ?? "Регистрация прошла успешно!");
+
+			navigate("/login");
 		} catch (error) {
 			const errorMessage =
 				error instanceof Error
