@@ -1,3 +1,4 @@
+import { ChatFavoritePage } from "@/pages/chat-favorite-page/ChatFavoritePage";
 import { ChatListPage } from "@/pages/index";
 import { cn } from "@/shared/lib/utils";
 import { Header } from "@/widgets/header";
@@ -45,7 +46,7 @@ export const MainLayout = (): JSX.Element => {
 					// },
 				)}
 			>
-        
+				<ChatFavoritePage />
 			</aside>
 		</main>
 	);

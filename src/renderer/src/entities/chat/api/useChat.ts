@@ -51,8 +51,12 @@ export const useGroupChats = (): UseQueryResult<IChat[]> => {
 export const useChatFavorites = (): UseQueryResult<IChat[]> => {
 	return useQuery({
 		queryKey: ["chatFavorite"],
-		queryFn: () => {
-			return chatApi.getFavoriteChats();
+		queryFn: async () => {
+			const response = await chatApi.getFavoriteChats();
+
+			return Array.isArray(response)
+				? response
+				: (response as { chats: IChat[] }).chats;
 		},
 	});
 };
