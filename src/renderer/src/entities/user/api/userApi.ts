@@ -1,4 +1,4 @@
-import { apiClient } from "@libs/api/clients";
+import { apiClient } from "@/libs/api/clients";
 import { TypeLoginSchema } from "../model/validate/login-schema";
 import { TypeRegisterSchema } from "../model/validate/register-schema";
 import { IUser } from "@/shared/types/user/user.interface";

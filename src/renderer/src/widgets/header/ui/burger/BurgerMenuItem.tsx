@@ -1,0 +1,96 @@
+import { IBurgerItems } from "../../model/burger-items";
+import { useTheme } from "next-themes";
+import { JSX, useSyncExternalStore } from "react";
+import { Moon, Sun } from "lucide-react";
+import { Link } from "react-router";
+import { useLoginStore } from "@/features/auth";
+
+interface IBurgerMenuItemProps {
+	item: IBurgerItems;
+	handleOpen: () => void;
+	handleSettingsOpen: () => void;
+	handleCreateChatOpen: () => void;
+	handleMobileMessagesOpen: (open: boolean) => void;
+}
+
+const emptySubscribe = () => () => {};
+
+export const BurgerMenuItem = ({
+	item,
+	handleOpen,
+	handleSettingsOpen,
+	handleCreateChatOpen,
+	handleMobileMessagesOpen,
+}: IBurgerMenuItemProps): JSX.Element => {
+	const { theme, setTheme } = useTheme();
+	const isMounted = useSyncExternalStore(
+		emptySubscribe,
+		() => true,
+		() => false,
+	);
+	const { logout } = useLoginStore();
+
+	if (!isMounted) {
+		return <></>;
+	}
+
+	return (
+		<li>
+			{item.isLink ? (
+				<Link
+					to={item.link || ""}
+					onClick={() => {
+						handleOpen();
+						handleMobileMessagesOpen(true);
+					}}
+				>
+					{item.title}
+				</Link>
+			) : item.title === "Выход" ? (
+				<button
+					type="button"
+					onClick={() => {
+						logout();
+						window.location.href = "/";
+					}}
+				>
+					{item.title}
+				</button>
+			) : item.title === "Тема" ? (
+				<button
+					type="button"
+					onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+					className="flex items-center gap-x-2"
+				>
+					{item.title}
+
+					{theme === "light" ? (
+						<Sun suppressHydrationWarning />
+					) : (
+						<Moon suppressHydrationWarning />
+					)}
+				</button>
+			) : item.title === "Создать чат" ? (
+				<button
+					type="button"
+					onClick={() => {
+						handleOpen();
+						handleCreateChatOpen();
+					}}
+				>
+					{item.title}
+				</button>
+			) : (
+				<button
+					type="button"
+					onClick={() => {
+						handleOpen();
+						handleSettingsOpen();
+					}}
+				>
+					{item.title}
+				</button>
+			)}
+		</li>
+	);
+};

@@ -1,5 +1,6 @@
 "use client";
 
+import { TypeUpdateChatSchema } from "@/entities/chat";
 import { TypeProfileUpdateSchema } from "../../../entities/user";
 // import { TypeProfileUpdateSchema } from "@/entities/user";
 import { ENDPOINTS } from "../constants/endpoints";
@@ -51,8 +52,8 @@ export const apiClient = {
 			baseClient.get(`${ENDPOINTS.chat.search}?query=${params?.search}`),
 		create: (data: { type: "DIRECT" | "GROUP" | "CHANNEL"; name: string }) =>
 			baseClient.post(ENDPOINTS.chat.create, data),
-		// update: (id: string, data: TypeUpdateChatSchema) =>
-		// 	baseClient.patch(ENDPOINTS.chat.update.replace(":id", id), data),
+		update: (id: string, data: TypeUpdateChatSchema) =>
+			baseClient.patch(ENDPOINTS.chat.update.replace(":id", id), data),
 		join: (id: string) =>
 			baseClient.post(ENDPOINTS.chat.join.replace(":id", id)),
 		leave: (id: string) =>

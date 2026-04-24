@@ -1,24 +1,64 @@
-import { ReactNode } from "react";
-import { Link } from "react-router";
+"use client";
 
-export const Header = (): ReactNode => {
+import { SearchInput, useSearchChatStore } from "@/features/search";
+import { ChangeEvent, JSX, useEffect, useState } from "react";
+import { BurgerMenu } from "./burger/BurgerMenu";
+import { BURGER_ITEMS } from "../model/burger-items";
+import { Container } from "@/shared/ui";
+import { useSettingsStore } from "@/features/settings";
+import { useSearch } from "@/entities/chat";
+import { useChatCreateStore } from "@/features/chat-create";
+import { useMobileMessages } from "@/features/mobile-messages";
+import { BurgerButton, useBurgerStore } from "@/features/burger-button";
+
+export const Header = (): JSX.Element => {
+	const [searchInput, setSearchInput] = useState<string>("");
+	const { isOpen, handleOpen } = useBurgerStore();
+	const { handleOpen: handleSettingsOpen } = useSettingsStore();
+	const { setSearchResult, handleOpen: handleSearchOpen } =
+		useSearchChatStore();
+	const { handleOpen: handleCreateChatOpen } = useChatCreateStore();
+	const { handleOpen: handleMobileMessagesOpen } = useMobileMessages();
+	const { data: search } = useSearch(searchInput);
+
+	useEffect(() => {
+		if (!searchInput.trim()) {
+			setSearchResult([]);
+			handleSearchOpen(false);
+			return;
+		}
+
+		if (searchInput.trim()) {
+			setSearchResult(search || []);
+		}
+	}, [searchInput, setSearchResult, handleSearchOpen, search]);
+
+	const handleInput = (e: ChangeEvent<HTMLInputElement>): void => {
+		setSearchInput(e.target.value);
+	};
+
 	return (
-		<header className="w-full bg-gray-800 text-white">
-			<div className="flex justify-between mx-auto p-10 w-[min(100%,1440px)]">
-				<h1>Logo</h1>
+		<header className="py-5 w-[min(100%,760px)] h-[clamp(83px,11vh,86px)] bg-primary-bg border-b-2 border-border-color">
+			<Container className="relative flex items-center justify-between gap-x-5">
+				<div>
+					<BurgerButton isOpen={isOpen} handleOpen={handleOpen} />
+					<BurgerMenu
+						items={BURGER_ITEMS}
+						isOpen={isOpen}
+						handleOpen={handleOpen}
+						handleSettingsOpen={handleSettingsOpen}
+						handleCreateChatOpen={handleCreateChatOpen}
+						handleMobileMessagesOpen={handleMobileMessagesOpen}
+					/>
+				</div>
 
-				<nav className="flex gap-x-5">
-					<li>home</li>
-					<li>about</li>
-					<li>contact</li>
-					<li>
-						<Link to={"/login"}>login</Link>
-					</li>
-					<li>
-						<Link to={"/register"}>register</Link>
-					</li>
-				</nav>
-			</div>
+				<SearchInput
+					id="test"
+					value={searchInput}
+					handleInput={handleInput}
+					handleOpen={handleSearchOpen}
+				/>
+			</Container>
 		</header>
 	);
 };

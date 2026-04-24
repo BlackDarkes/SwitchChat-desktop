@@ -19,7 +19,7 @@
       "@/widgets/*": [
         "./src/renderer/src/widgets/*",
       ],
-      "@features/*": [
+      "@/features/*": [
         "./src/renderer/src/features/*",
       ],
       "@/entities/*": [
@@ -28,7 +28,7 @@
       "@/shared/*": [
         "./src/renderer/src/shared/*",
       ],
-      "@libs/*": [
+      "@/libs/*": [
         "./src/renderer/src/libs/*",
       ]
     }

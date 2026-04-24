@@ -1,3 +1,4 @@
+import { SettingsModal } from "@/features/settings";
 import { JSX, ReactNode } from "react";
 import { Toaster } from "sonner";
 
@@ -11,6 +12,7 @@ export const ModalProvider = ({
 			{children}
 
 			<Toaster position="bottom-right" closeButton={true} duration={5000} />
+			<SettingsModal />
 		</>
 	);
 };
