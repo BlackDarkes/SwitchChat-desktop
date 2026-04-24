@@ -9,14 +9,20 @@ export default defineConfig({
 	renderer: {
 		resolve: {
 			alias: {
-				"@/app/*": resolve("src/renderer/src/app/*"),
-				"@/pages/*": resolve("src/renderer/src/pages/*"),
-				"@/widgets/*": resolve("src/renderer/src/widgets/*"),
-				"@/features/*": resolve("src/renderer/src/features/*"),
-				"@/shared/*": resolve("src/renderer/src/shared/*"),
-				"@/libs/*": resolve("src/renderer/src/libs/*"),
+				"@app": resolve("src/renderer/src/app"),
+				"@pages": resolve("src/renderer/src/pages"),
+				"@widgets": resolve("src/renderer/src/widgets"),
+				"@features": resolve("src/renderer/src/features"),
+				"@shared": resolve("src/renderer/src/shared"),
+				"@libs": resolve("src/renderer/src/libs"),
 			},
 		},
 		plugins: [react(), tailwindcss()],
+		server: {
+			host: true,
+			watch: {
+				usePolling: true,
+			}
+		}
 	},
 });
