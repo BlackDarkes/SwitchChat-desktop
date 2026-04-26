@@ -1,5 +1,3 @@
-"use client";
-
 import { getSocket } from "@/shared/api/socket";
 import { useSocketEvent } from "@/shared/lib/socket";
 import { useQueryClient } from "@tanstack/react-query";

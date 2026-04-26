@@ -1,5 +1,3 @@
-"use client";
-
 import { TypeUpdateChatSchema } from "@/entities/chat";
 import { TypeProfileUpdateSchema } from "../../../entities/user";
 // import { TypeProfileUpdateSchema } from "@/entities/user";

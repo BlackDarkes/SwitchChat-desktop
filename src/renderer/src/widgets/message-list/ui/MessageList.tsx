@@ -1,5 +1,3 @@
-"use client";
-
 import { MessageElement } from "@/entities/message";
 import { useLoginStore } from "@/features/auth";
 import { useProfileStore } from "@/features/profile";

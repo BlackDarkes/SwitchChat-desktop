@@ -1,5 +1,3 @@
-"use client";
-
 import { MessageTitleLayout } from "@/entities/message";
 import { useHandleBack } from "@/shared/hooks/handle-back";
 import { EllipsisVertical } from "lucide-react";

@@ -1,5 +1,3 @@
-"use client";
-
 import { apiClient } from "@/libs/api/clients";
 import { TypeCreateChatSchema } from "../model/validate/create-chat-schema";
 import { IChat, IChatMember } from "@/shared/types";

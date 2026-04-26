@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@/shared/lib/utils";
 import { ChangeEvent, JSX } from "react";
 import { Search } from "lucide-react";

@@ -1,5 +1,3 @@
-"use client";
-
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { chatApi } from "./chatApi";
 import { IChat } from "@/shared/types";

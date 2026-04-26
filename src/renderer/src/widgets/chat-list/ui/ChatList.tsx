@@ -1,5 +1,3 @@
-"use client";
-
 import { ChatElement, ChatElementDirect } from "@/entities/chat";
 import { Container } from "@/shared/ui";
 import { useMobileMessages } from "@/features/mobile-messages";

@@ -1,5 +1,3 @@
-"use client";
-
 import { UserAvatar } from "@/entities/user";
 import { useLoginStore } from "@/features/auth";
 import { useProfileStore } from "@/features/profile";

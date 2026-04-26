@@ -1,5 +1,3 @@
-"use client";
-
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import { messageApi } from "./messageApi";
 import { useChatSocketSync } from "@/entities/chat";

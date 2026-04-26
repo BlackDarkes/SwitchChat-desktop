@@ -1,5 +1,3 @@
-"use client";
-
 import { ChatAvatar } from "@/entities/chat/ui/ChatAvatar";
 import { MessageTitleLayout } from "@/entities/message";
 import {

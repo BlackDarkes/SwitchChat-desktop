@@ -5,11 +5,12 @@ import {
 	MessageSelfPage,
 	RegisterPage,
 } from "@/pages/index";
-import { createBrowserRouter, redirect } from "react-router";
+import { createBrowserRouter, Outlet, redirect } from "react-router";
 import { MainLayout } from "../layouts/MainLayout";
 import { AuthLayout } from "../layouts/AuthLayout";
 import { useLoginStore } from "@/features/auth";
 import { MessageListDefault } from "@/widgets/message-list-default";
+import { ModalProvider } from "./ModalProvider";
 
 const ensureAuthReady = async (): Promise<void> => {
 	const state = useLoginStore.getState();
@@ -25,48 +26,39 @@ const getAuthState = (): { isAuth: boolean; isReady: boolean } => {
 
 export const router = createBrowserRouter([
 	{
-		element: <AuthLayout />,
-		loader: async () => {
-			await ensureAuthReady();
-			const { isAuth } = getAuthState();
-			if (isAuth) return redirect("/");
-			return null;
-		},
+		element: (
+			<ModalProvider>
+				<Outlet />
+			</ModalProvider>
+		),
 		children: [
 			{
-				path: "/login",
-				element: <LoginPage />,
+				element: <AuthLayout />,
+				loader: async () => {
+					await ensureAuthReady();
+					const { isAuth } = getAuthState();
+					if (isAuth) return redirect("/");
+					return null;
+				},
+				children: [
+					{ path: "/login", element: <LoginPage /> },
+					{ path: "/register", element: <RegisterPage /> },
+				],
 			},
 			{
-				path: "/register",
-				element: <RegisterPage />,
-			},
-		],
-	},
-	{
-		element: <MainLayout />,
-		loader: async () => {
-			await ensureAuthReady();
-			const { isAuth } = getAuthState();
-			if (!isAuth) return redirect("/login");
-			return null;
-		},
-		children: [
-			{
-				path: "/",
-				element: <MessageListDefault />,
-			},
-			{
-				path: "/self",
-				element: <MessageSelfPage />,
-			},
-			{
-				path: "/chat/:id",
-				element: <MessagePage />,
-			},
-			{
-				path: "/friends",
-				element: <ContactPage />,
+				element: <MainLayout />,
+				loader: async () => {
+					await ensureAuthReady();
+					const { isAuth } = getAuthState();
+					if (!isAuth) return redirect("/login");
+					return null;
+				},
+				children: [
+					{ path: "/", element: <MessageListDefault /> },
+					{ path: "/self", element: <MessageSelfPage /> },
+					{ path: "/chat/:id", element: <MessagePage /> },
+					{ path: "/friends", element: <ContactPage /> },
+				],
 			},
 		],
 	},

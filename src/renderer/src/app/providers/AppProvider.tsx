@@ -1,7 +1,6 @@
 import { JSX } from "react";
 import { RouterProvider } from "react-router";
 import { router } from "./RouterProvider";
-import { ModalProvider } from "./ModalProvider";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/libs/query/query-client";
 import { SocketContextProvider } from "@/shared/lib/socket";
@@ -13,9 +12,7 @@ export const AppProvider = (): JSX.Element => {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<SocketContextProvider apiUrl={api_url || ""}>
-				<ModalProvider>
-					<RouterProvider router={router} />
-				</ModalProvider>
+				<RouterProvider router={router} />
 			</SocketContextProvider>
 		</QueryClientProvider>
 	);

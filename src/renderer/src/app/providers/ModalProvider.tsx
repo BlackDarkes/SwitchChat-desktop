@@ -1,3 +1,4 @@
+import { ChatCreateModal } from "@/features/chat-create";
 import { ProfileModal } from "@/features/profile";
 import { SettingsModal } from "@/features/settings";
 import { JSX, ReactNode } from "react";
@@ -15,6 +16,7 @@ export const ModalProvider = ({
 			<Toaster position="bottom-right" closeButton={true} duration={5000} />
 			<SettingsModal />
 			<ProfileModal />
+			<ChatCreateModal />
 		</>
 	);
 };

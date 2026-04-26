@@ -1,5 +1,3 @@
-"use client";
-
 import { SearchInput, useSearchChatStore } from "@/features/search";
 import { ChangeEvent, JSX, useEffect, useState } from "react";
 import { BurgerMenu } from "./burger/BurgerMenu";

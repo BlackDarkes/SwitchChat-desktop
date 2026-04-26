@@ -1,5 +1,3 @@
-"use client";
-
 import { JSX, useState } from "react";
 import { Pencil, Copy, Check, Upload } from "lucide-react";
 import { UserAvatar } from "@/entities/user";
