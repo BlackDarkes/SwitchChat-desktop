@@ -1,5 +1,6 @@
 import { ChatCreateModal } from "@/features/chat-create";
 import { ProfileModal } from "@/features/profile";
+import { SearchModal } from "@/features/search";
 import { SettingsModal } from "@/features/settings";
 import { JSX, ReactNode } from "react";
 import { Toaster } from "sonner";
@@ -17,6 +18,7 @@ export const ModalProvider = ({
 			<SettingsModal />
 			<ProfileModal />
 			<ChatCreateModal />
+			<SearchModal />
 		</>
 	);
 };

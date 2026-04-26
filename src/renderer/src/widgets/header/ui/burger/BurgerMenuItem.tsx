@@ -34,6 +34,11 @@ export const BurgerMenuItem = ({
 		return <></>;
 	}
 
+	const handleClose = async (): Promise<void> => {
+		logout();
+		window.location.href = "/";
+	};
+
 	return (
 		<li>
 			{item.isLink ? (
@@ -47,13 +52,7 @@ export const BurgerMenuItem = ({
 					{item.title}
 				</Link>
 			) : item.title === "Выход" ? (
-				<button
-					type="button"
-					onClick={() => {
-						logout();
-						window.location.href = "/";
-					}}
-				>
+				<button type="button" onClick={handleClose}>
 					{item.title}
 				</button>
 			) : item.title === "Тема" ? (
