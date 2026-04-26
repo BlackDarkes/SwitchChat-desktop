@@ -1,4 +1,5 @@
 import {
+	ContactPage,
 	LoginPage,
 	MessagePage,
 	MessageSelfPage,
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
 			{
 				path: "/chat/:id",
 				element: <MessagePage />,
+			},
+			{
+				path: "/friends",
+				element: <ContactPage />,
 			},
 		],
 	},
