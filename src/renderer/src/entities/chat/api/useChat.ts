@@ -8,8 +8,8 @@ export const useChats = (): UseQueryResult<IChat[]> => {
 	return useQuery({
 		queryKey: ["chats"],
 		queryFn: async () => {
-			const response = await chatApi.getUserChats();
-			return response.chats ?? [];
+			const chats = await chatApi.getUserChats();
+			return chats ?? [];
 		},
 		placeholderData: (prevData) => prevData, // placeholder что бы не моргало
 	});

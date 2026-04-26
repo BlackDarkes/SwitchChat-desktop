@@ -7,7 +7,7 @@ import { extractData } from "@/shared/model/extract-data";
 import { TypeUpdateChatSchema } from "../model/validate/update-chat-schema";
 
 export const chatApi = {
-	getUserChats: async (): Promise<{ chats: IChat[] }> =>
+	getUserChats: async (): Promise<IChat[]> =>
 		extractData(apiClient.chat.getUserChat()),
 
 	getChatById: async (id: string): Promise<IChat> =>
