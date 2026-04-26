@@ -13,3 +13,4 @@ export {
 export { CloseButton } from "./close-button";
 export { Modal } from "./modal";
 export { TruncateName } from "./truncate-name";
+export { MessageSubscription } from "./message-subscription";

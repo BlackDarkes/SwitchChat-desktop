@@ -66,8 +66,15 @@ export const setupAuthInterceptor = (client: AxiosInstance): AxiosInstance => {
 				originRequest._retry = true;
 				isRefreshing = true;
 
+				const baseURL: string =
+					import.meta.env.VITE_NODE_MOD === `dev`
+						? "/api"
+						: import.meta.env.API_URL;
+
+				console.log(baseURL);
+
 				try {
-					await client.post("/auth/refresh");
+					await client.post(`${baseURL}/auth/refresh`);
 					processQueue(null);
 					return client(originRequest);
 				} catch (refreshError) {

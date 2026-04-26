@@ -1,4 +1,9 @@
-import { LoginPage, MessageSelfPage, RegisterPage } from "@/pages/index";
+import {
+	LoginPage,
+	MessagePage,
+	MessageSelfPage,
+	RegisterPage,
+} from "@/pages/index";
 import { createBrowserRouter, redirect } from "react-router";
 import { MainLayout } from "../layouts/MainLayout";
 import { AuthLayout } from "../layouts/AuthLayout";
@@ -53,6 +58,10 @@ export const router = createBrowserRouter([
 			{
 				path: "/self",
 				element: <MessageSelfPage />,
+			},
+			{
+				path: "/chat/:id",
+				element: <MessagePage />,
 			},
 		],
 	},
