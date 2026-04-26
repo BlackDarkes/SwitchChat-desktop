@@ -1,6 +1,7 @@
 import { ChatFavoritePage } from "@/pages/chat-favorite-page/ChatFavoritePage";
 import { ChatListPage } from "@/pages/index";
 import { cn } from "@/shared/lib/utils";
+import { ChatIsland } from "@/widgets/chat-island";
 import { Header } from "@/widgets/header";
 import { JSX } from "react";
 export const MainLayout = (): JSX.Element => {
@@ -22,8 +23,7 @@ export const MainLayout = (): JSX.Element => {
 				<Header />
 
 				<div className={cn("flex h-full", "max-md:flex-col")}>
-					<ChatListPage />
-
+					<ChatFavoritePage />
 					<div
 						className={cn(
 							"flex flex-col items-center justify-between",
@@ -31,7 +31,8 @@ export const MainLayout = (): JSX.Element => {
 							"max-md:h-[calc(100%-170px)]",
 						)}
 					>
-						{/* <ChatIsland /> */}
+						<ChatListPage />
+						<ChatIsland />
 					</div>
 				</div>
 			</section>
@@ -46,7 +47,7 @@ export const MainLayout = (): JSX.Element => {
 					// },
 				)}
 			>
-				<ChatFavoritePage />
+				{/* {messages} */}
 			</aside>
 		</main>
 	);

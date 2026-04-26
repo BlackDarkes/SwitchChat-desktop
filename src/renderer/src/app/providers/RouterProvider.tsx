@@ -24,14 +24,6 @@ export const router = createBrowserRouter([
 				path: "/",
 				element: <ChatListPage />,
 			},
-			{
-				path: "/",
-				element: <ChatListPage />,
-			},
-			{
-				path: "/",
-				element: <ChatListPage />,
-			},
 		],
 	},
 ]);
