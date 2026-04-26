@@ -1,8 +1,9 @@
-import { ChatListPage, LoginPage, RegisterPage } from "@/pages/index";
+import { LoginPage, MessageSelfPage, RegisterPage } from "@/pages/index";
 import { createBrowserRouter, redirect } from "react-router";
 import { MainLayout } from "../layouts/MainLayout";
 import { AuthLayout } from "../layouts/AuthLayout";
 import { useLoginStore } from "@/features/auth";
+import { MessageListDefault } from "@/widgets/message-list-default";
 
 const ensureAuthReady = async (): Promise<void> => {
 	const state = useLoginStore.getState();
@@ -47,7 +48,11 @@ export const router = createBrowserRouter([
 		children: [
 			{
 				path: "/",
-				element: <ChatListPage />,
+				element: <MessageListDefault />,
+			},
+			{
+				path: "/self",
+				element: <MessageSelfPage />,
 			},
 		],
 	},

@@ -4,6 +4,7 @@ import { cn } from "@/shared/lib/utils";
 import { ChatIsland } from "@/widgets/chat-island";
 import { Header } from "@/widgets/header";
 import { JSX } from "react";
+import { Outlet } from "react-router";
 export const MainLayout = (): JSX.Element => {
 	return (
 		<main
@@ -47,7 +48,7 @@ export const MainLayout = (): JSX.Element => {
 					// },
 				)}
 			>
-				{/* {messages} */}
+				<Outlet />
 			</aside>
 		</main>
 	);

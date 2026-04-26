@@ -9,7 +9,7 @@ const BURGER_ITEMS: IBurgerItems[] = [
 	{
 		id: 1,
 		title: "Избранное",
-		link: "/chat/hex/self",
+		link: "/self",
 		isLink: true,
 	},
 	{
