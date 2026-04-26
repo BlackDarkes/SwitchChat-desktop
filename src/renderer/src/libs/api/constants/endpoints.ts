@@ -1,12 +1,15 @@
+const baseURL =
+	import.meta.env.VITE_NODE_MOD === "dev" ? "/api" : import.meta.env.API_URL;
+
 export const ENDPOINTS = {
 	auth: {
-		login: "/auth/login",
+		login: `${baseURL}/auth/login`,
 		register: "/auth/register",
 		logout: "/auth/logout",
 		refresh: "/auth/refresh",
 	},
 	user: {
-		me: "/user/me",
+		me: `${baseURL}/user/me`,
 		search: "/user/search",
 		update: "/user",
 	},

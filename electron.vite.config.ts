@@ -1,30 +1,41 @@
 import { resolve } from "path";
-import { defineConfig } from "electron-vite";
+import { defineConfig, loadEnv } from "electron-vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
-export default defineConfig({
-	main: {},
-	preload: {},
-	renderer: {
-		resolve: {
-			alias: {
-				"@/app": resolve("src/renderer/src/app"),
-				"@/pages": resolve("src/renderer/src/pages"),
-				"@/widgets": resolve("src/renderer/src/widgets"),
-				"@/features": resolve("src/renderer/src/features"),
-				"@/entities": resolve("src/renderer/src/entities"),
-				"@/shared": resolve("src/renderer/src/shared"),
-				"@/libs": resolve("src/renderer/src/libs"),
+export default defineConfig(({ mode }) => {
+	const env = loadEnv(mode, process.cwd(), "");
+
+	return {
+		main: {},
+		preload: {},
+		renderer: {
+			resolve: {
+				alias: {
+					"@/app": resolve("src/renderer/src/app"),
+					"@/pages": resolve("src/renderer/src/pages"),
+					"@/widgets": resolve("src/renderer/src/widgets"),
+					"@/features": resolve("src/renderer/src/features"),
+					"@/entities": resolve("src/renderer/src/entities"),
+					"@/shared": resolve("src/renderer/src/shared"),
+					"@/libs": resolve("src/renderer/src/libs"),
+				},
+			},
+			plugins: [react(), tailwindcss()],
+			server: {
+				host: true,
+				port: 5173,
+				watch: {
+					usePolling: true,
+				},
+				proxy: {
+					"/api": {
+						target: env.API_URL,
+						changeOrigin: true,
+						rewrite: (path) => path.replace(/^\/api/, ""),
+					},
+				},
 			},
 		},
-		plugins: [react(), tailwindcss()],
-		server: {
-			host: true,
-			port: 5173,
-			watch: {
-				usePolling: true,
-			},
-		},
-	},
+	};
 });

@@ -9,7 +9,7 @@ export const useChats = (): UseQueryResult<IChat[]> => {
 		queryKey: ["chats"],
 		queryFn: async () => {
 			const response = await chatApi.getUserChats();
-			return response.chats;
+			return response.chats ?? [];
 		},
 		placeholderData: (prevData) => prevData, // placeholder что бы не моргало
 	});
@@ -54,9 +54,11 @@ export const useChatFavorites = (): UseQueryResult<IChat[]> => {
 		queryFn: async () => {
 			const response = await chatApi.getFavoriteChats();
 
-			return Array.isArray(response)
+			const data: IChat[] = Array.isArray(response)
 				? response
 				: (response as { chats: IChat[] }).chats;
+
+			return data ?? [];
 		},
 	});
 };

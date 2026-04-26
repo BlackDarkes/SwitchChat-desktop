@@ -10,6 +10,7 @@ import { devtools } from "zustand/middleware";
 
 interface ILoginStore {
 	user: IUser | undefined;
+	isReady: boolean;
 	isAuth: boolean;
 	isLoading: boolean;
 	error: string;
@@ -26,6 +27,7 @@ export const useLoginStore = create<ILoginStore>()(
 	devtools(
 		(set) => ({
 			user: undefined,
+			isReady: false,
 			isAuth: false,
 			isLoading: false,
 			error: "",
@@ -34,11 +36,11 @@ export const useLoginStore = create<ILoginStore>()(
 				set({ isLoading: true, error: "" });
 				try {
 					const { message, user } = await userApi.login(data);
-					set({ user, isAuth: true, isLoading: false });
+					set({ user, isAuth: true, isReady: true, isLoading: false });
 					return message;
 				} catch (error: any) {
 					const errorMessage = error?.response?.data?.message || error.message;
-					set({ error: errorMessage });
+					set({ error: errorMessage, isReady: true, isLoading: false });
 					throw new Error(errorMessage);
 				} finally {
 					set({ isLoading: false });
@@ -52,7 +54,7 @@ export const useLoginStore = create<ILoginStore>()(
 					return message;
 				} catch (error: any) {
 					const errorMessage = error?.response?.data?.message || error.message;
-					set({ error: errorMessage });
+					set({ error: errorMessage, isReady: true, isLoading: false });
 					throw new Error(errorMessage);
 				} finally {
 					set({ isLoading: false });
@@ -63,7 +65,7 @@ export const useLoginStore = create<ILoginStore>()(
 				try {
 					await userApi.logout();
 				} finally {
-					set({ user: undefined, isAuth: false });
+					set({ user: undefined, isAuth: false, isReady: true });
 				}
 			},
 
@@ -71,14 +73,12 @@ export const useLoginStore = create<ILoginStore>()(
 				set({ isLoading: true, error: "" });
 				try {
 					const user = await userApi.me();
-					set({ user, isAuth: true, isLoading: false });
-					return true;
+					set({ user, isAuth: true, isReady: true, isLoading: false });
+					return user;
 				} catch (error: any) {
 					const errorMessage = error?.response?.data?.message || error.message;
-					set({ error: errorMessage });
+					set({ error: errorMessage, isReady: true, isLoading: false });
 					return false;
-				} finally {
-					set({ isLoading: false });
 				}
 			},
 		}),
