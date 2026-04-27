@@ -1,9 +1,9 @@
 import { IBurgerItems } from "../../model/burger-items";
-import { useTheme } from "next-themes";
 import { JSX, useSyncExternalStore } from "react";
 import { Moon, Sun } from "lucide-react";
 import { Link } from "react-router";
 import { useLoginStore } from "@/features/auth";
+import { useTheme } from "@/app/providers/ThemeProvider";
 
 interface IBurgerMenuItemProps {
 	item: IBurgerItems;
@@ -22,7 +22,7 @@ export const BurgerMenuItem = ({
 	handleCreateChatOpen,
 	handleMobileMessagesOpen,
 }: IBurgerMenuItemProps): JSX.Element => {
-	const { theme, setTheme } = useTheme();
+	const { theme, toggleTheme } = useTheme();
 	const isMounted = useSyncExternalStore(
 		emptySubscribe,
 		() => true,
@@ -58,7 +58,7 @@ export const BurgerMenuItem = ({
 			) : item.title === "Тема" ? (
 				<button
 					type="button"
-					onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+					onClick={toggleTheme}
 					className="flex items-center gap-x-2"
 				>
 					{item.title}
